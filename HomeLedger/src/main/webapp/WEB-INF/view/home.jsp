@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>Home Ledger</title>
 <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
-<link rel="stylesheet" href='<c:url value="/css/table.css"/>'>
+<link rel="stylesheet" href='<c:url value="/css/table.css"/>'> 
 <link rel="stylesheet" href='<c:url value="/css/style.css"/>'>
 <link href='<c:url value="css/addons/datatables.min.css"/>' rel="stylesheet">
 <script type="text/javascript" src='<c:url value="/js/jquery.min.js"/>'></script>
