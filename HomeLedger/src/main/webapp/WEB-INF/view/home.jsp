@@ -6,15 +6,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Home Ledger</title>
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/table.css">
-<link rel="stylesheet" href="/css/style.css">
-<link href="css/addons/datatables.min.css" rel="stylesheet">
-<script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap/3.4.1/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap/4.4.1/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="js/addons/datatables.min.js"></script>
+<link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
+<link rel="stylesheet" href='<c:url value="/css/table.css"/>'>
+<link rel="stylesheet" href='<c:url value="/css/style.css"/>'>
+<link href='<c:url value="css/addons/datatables.min.css"/>' rel="stylesheet">
+<script type="text/javascript" src='<c:url value="/js/jquery.min.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/bootstrap/3.4.1/bootstrap.min.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/bootstrap/4.4.1/bootstrap.min.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/jquery.js"/>'></script>
+<script type="text/javascript" src='<c:url value="js/addons/datatables.min.js"/>'></script>
 
 <script>
 if ( window.history.replaceState ) {
@@ -36,39 +36,39 @@ if ( window.history.replaceState ) {
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li><a href="/home">Home</a></li>
+					<li><a href='<c:url value="/home"/>'>Home</a></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Organize Spends<span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/organiseBills">BILLS</a></li>
-							<li><a href="/organiseEssentials">DAILY ESSENTIALS</a></li>
-							<li><a href="/organiseHealthCare">HEALTH CARE</a></li>
-							<li><a href="/organiseShopping">SHOPPING</a></li>
-							<li><a href="/organiseTravel">TRAVEL</a></li>
-							<li><a href="/organiseVehicles">VEHICLES</a></li>
+							<li><a href='<c:url value="/organiseBills"/>'>BILLS</a></li>
+							<li><a href='<c:url value="/organiseEssentials"/>'>DAILY ESSENTIALS</a></li>
+							<li><a href='<c:url value="/organiseHealthCare"/>'>HEALTH CARE</a></li>
+							<li><a href='<c:url value="/organiseShopping"/>'>SHOPPING</a></li>
+							<li><a href='<c:url value="/organiseTravel"/>'>TRAVEL</a></li>
+							<li><a href='<c:url value="/organiseVehicles"/>'>VEHICLES</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Add Spends<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/addBillSpends">BILLS</a></li>
-							<li><a href="/addDailyEssentialSpends">DAILY ESSENTIALS</a></li>
-							<li><a href="/addHealthCareSpends">HEALTH CARE</a></li>
-							<li><a href="/addShoppingSpends">SHOPPING</a></li>
-							<li><a href="/addTravelSpends">TRAVEL</a></li>
-							<li><a href="/addVehicleSpends">VEHICLE SPENDS</a></li>
-							<li><a href="/addOtherSpends">OTHER SPENDS</a></li>
+							<li><a href='<c:url value="/addBillSpends"/>'>BILLS</a></li>
+							<li><a href='<c:url value="/addDailyEssentialSpends"/>'>DAILY ESSENTIALS</a></li>
+							<li><a href='<c:url value="/addHealthCareSpends"/>'>HEALTH CARE</a></li>
+							<li><a href='<c:url value="/addShoppingSpends"/>'>SHOPPING</a></li>
+							<li><a href='<c:url value="/addTravelSpends"/>'>TRAVEL</a></li>
+							<li><a href='<c:url value="/addVehicleSpends"/>'>VEHICLE SPENDS</a></li>
+							<li><a href='<c:url value="/addOtherSpends"/>'>OTHER SPENDS</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">VIEW Spends<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/viewAllSpends">VIEW ALL SPENDS</a></li>
+							<li><a href='<c:url value="/viewAllSpends"/>'>VIEW ALL SPENDS</a></li>
 							<li><a href="#">VIEW SPENDS BY TIME</a></li>
 							<li><a href="#">VIEW SPENDS BY CATEGORY</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/logout">Logout</a></li>
+					<li><a href='<c:url value="/logout"/>'>Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -110,7 +110,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This bill type already exists
 				</div>
-				<form action="/addBillType" method="post" modelAttribute="BillType">
+				<form action='<c:url value="/addBillType"/>' method="post" modelAttribute="BillType">
 					<div class="form-group">
 						<label for="billType">Bill Type:</label> <input type="text"
 							class="form-control" id="billTypeName" name="billTypeName"
@@ -145,7 +145,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This bill type already exists
 				</div>
-				<form action="/editBillType" method="post" modelAttribute="BillType">
+				<form action='<c:url value="/editBillType"/>' method="post" modelAttribute="BillType">
 					<input type="hidden" name="billTypeId" id="billTypeId"
 						value="${billtype.billTypeId}">
 					<div class="form-group">
@@ -182,7 +182,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This bill account already exists
 				</div>
-				<form action="/addBillAccount" method="post"
+				<form action='<c:url value="/addBillAccount"/>' method="post"
 					modelAttribute="BillAccounts">
 					<div class="form-group">
 						<label for="billType">Bill Type:</label> <select
@@ -235,7 +235,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This bill account already exists
 				</div>
-				<form action="/editBillAccount" method="post"
+				<form action='<c:url value="/editBillAccount"/>' method="post"
 					modelAttribute="billAccounts">
 					<input type="hidden" name="billId" value="${bills.billId}">
 					<div class="form-group">
@@ -280,17 +280,17 @@ if ( window.history.replaceState ) {
 									<tr>
 										<td>${billType.billTypeName}</td>
 										<td><a
-											href="/editBillType?billTypeId=${billType.billTypeId}"><span><img
-													alt="Edit" src="/image/edit.png" width="15px" height="15px"></span></a></td>
+											href='<c:url value="/editBillType?billTypeId=${billType.billTypeId}"/>'><span><img
+													alt="Edit" src='<c:url value="/image/edit.png"/>' width="15px" height="15px"></span></a></td>
 										<td><a
-											href="/deleteBillType?billTypeId=${billType.billTypeId}"><span><img
-													alt="Delete" src="/image/delete.png" width="20px"
+											href='<c:url value="/deleteBillType?billTypeId=${billType.billTypeId}"/>'><span><img
+													alt="Delete" src='<c:url value="/image/delete.png"/>' width="20px"
 													height="20px"></span></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-						<a href="/addBillType"><input type="button"
+						<a href='<c:url value="/addBillType"/>'><input type="button"
 							class="btn btn-default" value="ADD NEW BILL TYPE"></a>
 					</div>
 					<div class="container">
@@ -311,16 +311,16 @@ if ( window.history.replaceState ) {
 										<td>${bill.billType}</td>
 										<td>${bill.billAccount}</td>
 										<td>${bill.billAmount}</td>
-										<td><a href="/editBill?billId=${bill.billId}"><span><img
-													alt="Edit" src="/image/edit.png" width="15px" height="15px"></span></a></td>
-										<td><a href="/deleteBill?billId=${bill.billId}"><span><img
-													alt="Delete" src="/image/delete.png" width="20px"
+										<td><a href='<c:url value="/editBill?billId=${bill.billId}"/>'><span><img
+													alt="Edit" src='<c:url value="/image/edit.png"/>' width="15px" height="15px"></span></a></td>
+										<td><a href='<c:url value="/deleteBill?billId=${bill.billId}"/>'><span><img
+													alt="Delete" src='<c:url value="/image/delete.png"/>' width="20px"
 													height="20px"></span></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-						<a href="/addBillAccount"><input type="button"
+						<a href='<c:url value="/addBillAccount"/>'><input type="button"
 							class="btn btn-default" value="ADD NEW BILL ACCOUNT"></a>
 					</div>
 				</div>
@@ -347,17 +347,17 @@ if ( window.history.replaceState ) {
 										<td>${veicle.vehicleMake}</td>
 										<td>${veicle.vehicleModel}</td>
 										<td>${veicle.vehicleNumber}</td>
-										<td><a href="/editVehicle?vehicleId=${veicle.vehicleId}"><span><img
-													alt="Edit" src="/image/edit.png" width="15px" height="15px"></span></a></td>
+										<td><a href='<c:url value="/editVehicle?vehicleId=${veicle.vehicleId}"/>'><span><img
+													alt="Edit" src='<c:url value="/image/edit.png"/>' width="15px" height="15px"></span></a></td>
 										<td><a
-											href="/deleteVehicle?vehicleId=${veicle.vehicleId}"><span><img
-													alt="Delete" src="/image/delete.png" width="20px"
+											href='<c:url value="/deleteVehicle?vehicleId=${veicle.vehicleId}"/>'><span><img
+													alt="Delete" src='<c:url value="/image/delete.png"/>' width="20px"
 													height="20px"></span></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-						<a href="/addVehicle"><input type="button"
+						<a href='<c:url value="/addVehicle"/>'><input type="button"
 							class="btn btn-default" value="ADD VEHICLE"></a>
 						<h2 style="color: green">VEHICLE SPENDS</h2>
 						<table class="table table-bordered" id="dtBasicExample1">
@@ -373,17 +373,17 @@ if ( window.history.replaceState ) {
 									<tr>
 										<td>${veicleSpend.spendName}</td>
 										<td><a
-											href="/editVehicleSpend?spendId=${veicleSpend.spendId}"><span><img
-													alt="Edit" src="/image/edit.png" width="15px" height="15px"></span></a></td>
+											href='<c:url value="/editVehicleSpend?spendId=${veicleSpend.spendId}"/>'><span><img
+													alt="Edit" src='<c:url value="/image/edit.png"/>' width="15px" height="15px"></span></a></td>
 										<td><a
-											href="/deleteVehicleSpend?spendId=${veicleSpend.spendId}"><span><img
-													alt="Delete" src="/image/delete.png" width="20px"
+											href='<c:url value="/deleteVehicleSpend?spendId=${veicleSpend.spendId}"/>'><span><img
+													alt="Delete" src='<c:url value="/image/delete.png"/>' width="20px"
 													height="20px"></span></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-						<a href="/addVehicleSpend"><input type="button"
+						<a href='<c:url value="/addVehicleSpend"/>'><input type="button"
 							class="btn btn-default" value="ADD VEHICLE SPENDS"></a>
 					</div>
 				</div>
@@ -413,7 +413,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This Vehicle already exists
 				</div>
-				<form action="/addVehicle" method="post" modelAttribute="Vehicle">
+				<form action='<c:url value="/addVehicle"/>' method="post" modelAttribute="Vehicle">
 					<div class="form-group">
 						<label for="vehicleMake">Vehicle Make:</label> <input type="text"
 							class="form-control" id="vehicleMake" name="vehicleMake"
@@ -461,7 +461,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This bill account already exists
 				</div>
-				<form action="/editVehicle" method="post" modelAttribute="Vehicle">
+				<form action='<c:url value="/editVehicle"/>' method="post" modelAttribute="Vehicle">
 					<input type="hidden" id="vehicleId" name="vehicleId"
 						value="${vehicle.vehicleId}">
 					<div class="form-group">
@@ -511,7 +511,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This Vehicle Spend already exists
 				</div>
-				<form action="/addVehicleSpend" method="post"
+				<form action='<c:url value="/addVehicleSpend"/>' method="post"
 					modelAttribute="VehicleSpend">
 					<div class="form-group">
 						<label for="spendName">Vehicle Spend Name:</label> <input
@@ -548,7 +548,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This Vehicle Spend already exists
 				</div>
-				<form action="/editVehicleSpend" method="post"
+				<form action='<c:url value="/editVehicleSpend"/>' method="post"
 					modelAttribute="VehicleSpend">
 					<input type="hidden" id="spendId" name="spendId"
 						value="${vehicleSpend.spendId}">
@@ -581,17 +581,17 @@ if ( window.history.replaceState ) {
 									<tr>
 										<td>${dailyEssential.dailyEssentialsName}</td>
 										<td><a
-											href="/editDailyEssentials?dailyEssentialsId=${dailyEssential.dailyEssentialsId}"><span><img
-													alt="Edit" src="/image/edit.png" width="15px" height="15px"></span></a></td>
+											href='<c:url value="/editDailyEssentials?dailyEssentialsId=${dailyEssential.dailyEssentialsId}"/>'><span><img
+													alt="Edit" src='<c:url value="/image/edit.png"/>' width="15px" height="15px"></span></a></td>
 										<td><a
-											href="/deleteDailyEssentials?dailyEssentialsId=${dailyEssential.dailyEssentialsId}"><span><img
-													alt="Delete" src="/image/delete.png" width="20px"
+											href='<c:url value="/deleteDailyEssentials?dailyEssentialsId=${dailyEssential.dailyEssentialsId}"/>'><span><img
+													alt="Delete" src='<c:url value="/image/delete.png"/>' width="20px"
 													height="20px"></span></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-						<a href="/addDailyEssentials"><input type="button"
+						<a href='<c:url value="/addDailyEssentials"/>'><input type="button"
 							class="btn btn-default" value="ADD NEW DAILY ESSENTIAL"></a>
 					</div>
 				</div>
@@ -621,7 +621,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This daily essential already exists
 				</div>
-				<form action="/addDailyEssentials" method="post"
+				<form action='<c:url value="/addDailyEssentials"/>' method="post"
 					modelAttribute="DailyEssentials">
 					<div class="form-group">
 						<label for="dailyEssentialsName">Dailly Essentials Name:</label> <input
@@ -658,7 +658,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This daily essential already exists
 				</div>
-				<form action="/editDailyEssentials" method="post"
+				<form action='<c:url value="/editDailyEssentials"/>' method="post"
 					modelAttribute="DailyEssentials">
 					<input type="hidden" name="dailyEssentialsId"
 						value="${dailyEssentials.dailyEssentialsId}">
@@ -691,17 +691,17 @@ if ( window.history.replaceState ) {
 									<tr>
 										<td>${shoppingType.shoppingTypeName}</td>
 										<td><a
-											href="/editShoppingType?shoppingTypeId=${shoppingType.shoppingTypeId}"><span><img
-													alt="Edit" src="/image/edit.png" width="15px" height="15px"></span></a></td>
+											href='<c:url value="/editShoppingType?shoppingTypeId=${shoppingType.shoppingTypeId}"/>'><span><img
+													alt="Edit" src='<c:url value="/image/edit.png"/>' width="15px" height="15px"></span></a></td>
 										<td><a
-											href="/deleteShoppingType?shoppingTypeId=${shoppingType.shoppingTypeId}"><span><img
-													alt="Delete" src="/image/delete.png" width="20px"
+											href='<c:url value="/deleteShoppingType?shoppingTypeId=${shoppingType.shoppingTypeId}"/>'><span><img
+													alt="Delete" src='<c:url value="/image/delete.png"/>' width="20px"
 													height="20px"></span></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-						<a href="/addShoppingType"><input type="button"
+						<a href='<c:url value="/addShoppingType"/>'><input type="button"
 							class="btn btn-default" value="ADD NEW SHOPPING TYPE"></a>
 					</div>
 				</div>
@@ -731,7 +731,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This shopping type already exists
 				</div>
-				<form action="/addShoppingType" method="post"
+				<form action='<c:url value="/addShoppingType"/>' method="post"
 					modelAttribute="Shopping">
 					<div class="form-group">
 						<label for="shoppingTypeName">Shopping Type Name:</label> <input
@@ -767,7 +767,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This Shopping type already exists
 				</div>
-				<form action="/editShoppingType" method="post"
+				<form action='<c:url value="/editShoppingType"/>' method="post"
 					modelAttribute="Shopping">
 					<input type="hidden" name="shoppingTypeId"
 						value="${shoppingType.shoppingTypeId}">
@@ -799,17 +799,17 @@ if ( window.history.replaceState ) {
 									<tr>
 										<td>${healthCareType.healthCareSpendType}</td>
 										<td><a
-											href="/editHealthCareSpendType?healthCareSpendId=${healthCareType.healthCareSpendId}"><span><img
-													alt="Edit" src="/image/edit.png" width="15px" height="15px"></span></a></td>
+											href='<c:url value="/editHealthCareSpendType?healthCareSpendId=${healthCareType.healthCareSpendId}"/>'><span><img
+													alt="Edit" src='<c:url value="/image/edit.png"/>' width="15px" height="15px"></span></a></td>
 										<td><a
-											href="/deleteHealthCareSpendType?healthCareSpendId=${healthCareType.healthCareSpendId}"><span><img
-													alt="Delete" src="/image/delete.png" width="20px"
+											href='<c:url value="/deleteHealthCareSpendType?healthCareSpendId=${healthCareType.healthCareSpendId}"/>'><span><img
+													alt="Delete" src='<c:url value="/image/delete.png"/>' width="20px"
 													height="20px"></span></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-						<a href="/addHealthCareSpendType"><input type="button"
+						<a href='<c:url value="/addHealthCareSpendType"/>'><input type="button"
 							class="btn btn-default" value="ADD NEW HEALTH CARE SPEND TYPE"></a>
 					</div>
 				</div>
@@ -839,7 +839,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This Health care spend type already exists
 				</div>
-				<form action="/addHealthCareSpendType" method="post"
+				<form action='<c:url value="/addHealthCareSpendType"/>' method="post"
 					modelAttribute="HealthCare">
 					<div class="form-group">
 						<label for="healthCareSpendType">Health Care Spend Type
@@ -876,7 +876,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This health care spend type already exists
 				</div>
-				<form action="/editHealthCareSpendType" method="post"
+				<form action='<c:url value="/editHealthCareSpendType"/>' method="post"
 					modelAttribute="HealthCare">
 					<input type="hidden" name="healthCareSpendId"
 						value="${healthCare.healthCareSpendId}">
@@ -917,7 +917,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> Some thing went wrong
 				</div>
-				<form action="/addBillSpends" method="post"
+				<form action='<c:url value="/addBillSpends"/>' method="post"
 					modelAttribute="Particulars">
 					<div class="form-group">
 						<input type="hidden" id="particularDate" name="particularDate">
@@ -996,7 +996,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> Some thing went wrong
 				</div>
-				<form action="/addDailyEssentialSpends" method="post"
+				<form action='<c:url value="/addDailyEssentialSpends"/>' method="post"
 					modelAttribute="Particulars">
 					<div class="form-group">
 						<input type="hidden" id="particularDate" name="particularDate">
@@ -1072,7 +1072,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> Some thing went wrong
 				</div>
-				<form action="/addHealthCareSpends" method="post"
+				<form action='<c:url value="/addHealthCareSpends"/>' method="post"
 					modelAttribute="Particulars">
 					<div class="form-group">
 						<input type="hidden" id="particularDate" name="particularDate">
@@ -1147,7 +1147,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> Some thing went wrong
 				</div>
-				<form action="/addVehicleSpends" method="post"
+				<form action='<c:url value="/addVehicleSpends"/>' method="post"
 					modelAttribute="Particulars">
 					<div class="form-group">
 						<input type="hidden" id="particularDate" name="particularDate">
@@ -1226,7 +1226,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> Some thing went wrong
 				</div>
-				<form action="/addShoppingSpends" method="post"
+				<form action='<c:url value="/addShoppingSpends"/>' method="post"
 					modelAttribute="Particulars">
 					<div class="form-group">
 						<input type="hidden" id="particularDate" name="particularDate">
@@ -1301,7 +1301,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> Some thing went wrong
 				</div>
-				<form action="/addTravelSpends" method="post"
+				<form action='<c:url value="/addTravelSpends"/>' method="post"
 					modelAttribute="Particulars">
 					<div class="form-group">
 						<input type="hidden" id="particularDate" name="particularDate">
@@ -1376,7 +1376,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> Some thing went wrong
 				</div>
-				<form action="/addOtherSpends" method="post"
+				<form action='<c:url value="/addOtherSpends"/>' method="post"
 					modelAttribute="Particulars">
 					<div class="form-group">
 						<input type="hidden" id="particularDate" name="particularDate">
@@ -1439,17 +1439,17 @@ if ( window.history.replaceState ) {
 									<tr>
 										<td>${travelType.travelSpendName}</td>
 										<td><a
-											href="/editTravelType?travelSpendId=${travelType.travelSpendId}"><span><img
-													alt="Edit" src="/image/edit.png" width="15px" height="15px"></span></a></td>
+											href='<c:url value="/editTravelType?travelSpendId=${travelType.travelSpendId}"/>'><span><img
+													alt="Edit" src='<c:url value="/image/edit.png"/>' width="15px" height="15px"></span></a></td>
 										<td><a
-											href="/deleteTravelType?travelSpendId=${travelType.travelSpendId}"><span><img
-													alt="Delete" src="/image/delete.png" width="20px"
+											href='<c:url value="/deleteTravelType?travelSpendId=${travelType.travelSpendId}"/>'><span><img
+													alt="Delete" src='<c:url value="/image/delete.png"/>' width="20px"
 													height="20px"></span></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-						<a href="/addTravelType"><input type="button"
+						<a href='<c:url value="/addTravelType"/>'><input type="button"
 							class="btn btn-default" value="ADD NEW TRAVEL TYPE"></a>
 					</div>
 				</div>
@@ -1479,7 +1479,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This travel type already exists
 				</div>
-				<form action="/addTravelType" method="post"
+				<form action='<c:url value="/addTravelType"/>' method="post"
 					modelAttribute="Travel">
 					<div class="form-group">
 						<label for="travelSpendName">Travel Type Name:</label> <input
@@ -1515,7 +1515,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This travel type already exists
 				</div>
-				<form action="/editTravelType" method="post"
+				<form action='<c:url value="/editTravelType"/>' method="post"
 					modelAttribute="Travel">
 					<input type="hidden" name="travelSpendId"
 						value="${travelType.travelSpendId}">
@@ -1555,8 +1555,8 @@ if ( window.history.replaceState ) {
 							<td>${particular.particularDescription}</td>
 							<td>${particular.particularAmount}</td>
 							<td>${particular.particularRemarks}</td>
-							<td><a href="/deleteParticular?particularId=${particular.particularId}"><span><img
-													alt="Edit" src="/image/delete.png" width="15px" height="15px"></span></a></td>
+							<td><a href='<c:url value="/deleteParticular?particularId=${particular.particularId}"/>'><span><img
+													alt="Edit" src='<c:url value="/image/delete.png"/>' width="15px" height="15px"></span></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

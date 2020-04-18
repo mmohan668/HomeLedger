@@ -6,12 +6,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome to home ledger</title>
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap/3.4.1/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap/4.4.1/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/jquery.js"></script>
+<link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
+<link rel="stylesheet" href='<c:url value="/css/style.css"/>'>
+<script type="text/javascript" src='<c:url value="/js/jquery.min.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/bootstrap/3.4.1/bootstrap.min.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/bootstrap/4.4.1/bootstrap.min.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/jquery.js"/>'></script>
 <script>
 if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
@@ -26,9 +26,9 @@ if ( window.history.replaceState ) {
 				<a class="navbar-brand">Home Ledger</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="/welcome">Home</a></li>
-				<li><a href="/login">Login</a></li>
-				<li><a href="/register">Register</a></li>
+				<li><a href='<c:url value="/welcome"/>'>Home</a></li>
+				<li><a href='<c:url value="/login"/>'>Login</a></li>
+				<li><a href='<c:url value="/register"/>'>Register</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -79,7 +79,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-success">
 					<strong>Congratulations!</strong> You registration is success full. Please login to continue.
 				</div>
-				<form action="/login" method="post">
+				<form action='<c:url value="/login"/>' method="post">
 					<div class="form-group">
 						<label for="email">Email:</label> <input type="text"
 							class="form-control form-control1" id="email" name="username"
@@ -125,7 +125,7 @@ if ( window.history.replaceState ) {
 				<div class="alert alert-danger">
 					<strong>OOPS!</strong> This user already exists. Please try using different Email and Mobile number.
 				</div>
-				<form action="/register" method="post" modelAttribute="User">
+				<form action='<c:url value="/register"/>' method="post" modelAttribute="User">
 					<div class="form-group">
 						<label for="First Name">First Name:</label> <input type="text"
 							class="form-control" id="firstName" name="firstName"
