@@ -1,0 +1,9 @@
+.alert{
+	display: none;
+	text-align: center;
+}
+
+.container .form-control1{
+	max-width:  300px;
+	align-items: center;
+}
