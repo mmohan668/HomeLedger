@@ -11,11 +11,23 @@
 <script type="text/javascript" src='<c:url value="/js/jquery.min.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/bootstrap/3.4.1/bootstrap.min.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/bootstrap/4.4.1/bootstrap.min.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/jquery.validate.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery.js"/>'></script>
+
 <script>
 if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
 }
+history.pushState(null, document.title, location.href);
+window.addEventListener('popstate', function (event)
+{
+  history.pushState(null, document.title, location.href);
+});
+$(function () {  
+    $(document).keydown(function (e) {  
+        return (e.which || e.keyCode) != 116;  
+    });  
+}); 
 </script>
 </head>
 <body>
@@ -77,7 +89,7 @@ if ( window.history.replaceState ) {
 					<strong>OOPS!</strong> Invalid Username/Password.
 				</div>
 				<div class="alert alert-success">
-					<strong>Congratulations!</strong> You registration is success full. Please login to continue.
+					<strong>Congratulations!</strong> You registration is successful. Please login to continue.
 				</div>
 				<form action='<c:url value="/login"/>' method="post">
 					<div class="form-group">
@@ -94,7 +106,7 @@ if ( window.history.replaceState ) {
 						<label><input type="checkbox"> Remember me</label>
 					</div>
 					<div class="checkbox">
-						<span><a href="#">Forgot Password?</a></span>
+						<span><a href='<c:url value="forgotPassword"/>'>Forgot Password?</a></span>
 					</div>
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
@@ -111,10 +123,17 @@ if ( window.history.replaceState ) {
 						})
 					</script>
 				</c:if>
+				<c:if test="${status=='invalid-email'}">
+					<script type="text/javascript">
+						$(function() {
+							$('#Failedmessage').show("slow")
+						})
+					</script>
+				</c:if>
 				<c:if test="${status=='failed'}">
 					<script type="text/javascript">
 						$(function() {
-							$('.alert-danger').show("slow")
+							$('#userExists').show("slow")
 						})
 					</script>
 				</c:if>
@@ -122,10 +141,13 @@ if ( window.history.replaceState ) {
 					<strong>Success!</strong> You have successfully registered for home
 					ledger
 				</div>
-				<div class="alert alert-danger">
+				<div id="userExists" class="alert alert-danger">
 					<strong>OOPS!</strong> This user already exists. Please try using different Email and Mobile number.
 				</div>
-				<form action='<c:url value="/register"/>' method="post" modelAttribute="User">
+				<div id="Failedmessage" class="alert alert-danger">
+					<strong>OOPS!</strong> Registration failed due to Invalid email address. Please enter the valid email id.
+				</div>
+				<form id="registerForm" action='<c:url value="/register"/>' method="post" modelAttribute="User">
 					<div class="form-group">
 						<label for="First Name">First Name:</label> <input type="text"
 							class="form-control" id="firstName" name="firstName"
@@ -155,9 +177,126 @@ if ( window.history.replaceState ) {
 							title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 							required="required">
 					</div>
+					<div class="form-group">
+						<label for="pwd">Confirm Password:</label> <input type="password"
+							class="form-control" class="text-length" id="confirmPassword" name="confirmPassword"
+							placeholder="Confirm password"
+							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+							title="Please enter the same Password as above"
+							required="required">
+					</div>
+					<button type="submit" class="btn btn-default" onclick="validatePassword();">Submit</button>
+					<button type="reset" class="btn btn-default">Reset</button>
+				</form>
+			</div>
+		</c:when>
+		<c:when test="${MODE=='FORGOTPASSWORD'}">
+			<div class="container">
+				<h2>Forgot Password</h2>
+				<hr>
+				<c:if test="${status=='failed'}">
+					<script type="text/javascript">
+						$(function() {
+							$('#userExists').show("slow")
+						})
+					</script>
+				</c:if>
+				<div id="userExists" class="alert alert-danger">
+					<strong>OOPS!</strong> This email id does not exists in our database. please enter valid email id.
+				</div>
+				<form action='<c:url value="/getOtp"/>' method="post" modelAttribute="OTPNumber">
+					<div class="form-group">
+						<label for="email">Email:</label> <input type="email"
+							class="form-control" id="email" name="emailId"
+							placeholder="Enter Email Id" required="required" value="${user.emailId}">
+					</div>
 					<button type="submit" class="btn btn-default">Submit</button>
 					<button type="reset" class="btn btn-default">Reset</button>
 				</form>
+			</div>
+		</c:when>
+		<c:when test="${MODE=='OTPNUMBER'}">
+			<div class="container">
+				<h2>OTP</h2>
+				<hr>
+				<c:if test="${status=='failed'}">
+					<script type="text/javascript">
+						$(function() {
+							$('#userExists').show("slow")
+						})
+					</script>
+				</c:if>
+				<div id="userExists" class="alert alert-danger">
+					<strong>OOPS!</strong> OTP is wrong please enter the correct OTP
+				</div>
+				<form action='<c:url value="/resetPassword"/>' method="get" modelAttribute="OTPNumber">
+					<div class="form-group">
+						<label for="email">Email:</label> <input type="email"
+							class="form-control" id="email" name="emailId"
+							placeholder="Enter Email Id" required="required" readonly="readonly" value="${OTPNumber.emailId}">
+					</div>
+					<div class="form-group">
+						<label for="email">Please Enter the OTP received in your mail:</label> <input type="text"
+							class="form-control" id="email" name="otpNumber"
+							placeholder="Enter Email Id" required="required">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="reset" class="btn btn-default">Reset</button>
+				</form>
+			</div>
+		</c:when>
+		<c:when test="${MODE=='RESETPASSWORD'}">
+			<div class="container">
+				<h2>OTP</h2>
+				<hr>
+				<c:if test="${status=='failed'}">
+					<script type="text/javascript">
+						$(function() {
+							$('#userExists').show("slow")
+						})
+					</script>
+				</c:if>
+				<div id="userExists" class="alert alert-danger">
+					<strong>OOPS!</strong> OTP is wrong please enter the correct OTP
+				</div>
+				<form id="registerForm" action='<c:url value="/resetPassword"/>' method="post" modelAttribute="User">
+					<div class="form-group">
+						<input type="hidden" name="userId" value="${user.userId}">
+						<input type="hidden" name="firstName" value="${user.firstName}">
+						<input type="hidden" name="lastName" value="${user.lastName}">
+						<input type="hidden" name="emailId" value="${user.emailId}">
+						<input type="hidden" name="mobileNumber" value="${user.mobileNumber}">
+					</div>
+					<div class="form-group">
+						<label for="pwd">Enter New Password:</label> <input type="password"
+							class="form-control" class="text-length" id="pwd" name="password"
+							placeholder="Enter password"
+							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+							title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+							required="required">
+					</div>
+					<div class="form-group">
+						<label for="pwd">Confirm New Password:</label> <input type="password"
+							class="form-control" class="text-length" id="confirmPassword" name="confirmPassword"
+							placeholder="Confirm password"
+							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+							title="Please enter the same Password as above"
+							required="required">
+					</div>
+					<button type="submit" class="btn btn-default" onclick="validatePassword();">Submit</button>
+					<button type="reset" class="btn btn-default">Reset</button>
+				</form>
+			</div>
+		</c:when>
+		<c:when test="${MODE=='RESETSUCCESS'}">
+			<div class="container">
+				<div class="form-group">
+					<br><br><br><br><br><br>
+					Password RESET is successful.
+					<br><br>
+					Please <a href='<url value="/login">'>click here</a> for login.
+					<hr>
+				</div>
 			</div>
 		</c:when>
 	</c:choose>

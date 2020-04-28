@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
 	$('#dtBasicExample').DataTable();
 	$('#dtBasicExample1').DataTable();
 	$('.dataTables_length').addClass('bs-select');
@@ -59,4 +60,36 @@ function getBillAmount(){
 			alert("OOPS! Some thing went wrong");
 		}
 	});
+}
+function validatePassword() {
+    var validator = $("#registerForm").validate({
+        rules: {
+        	mobileNumber : {
+        		required : true,
+    			number : true,
+                minlength : 10,
+                maxlength : 10
+        	},
+        	password : {
+        		required : true,
+        		minlength : 8,
+        		maxlength : 16,
+        	},
+            confirmPassword : {
+                equalTo : "#pwd"
+            }
+        },
+        messages: {
+        	firstName : "Enter First Name",
+        	emailId : "Enter Valid Email Address",
+        	mobileNumber : "Enter Valid Mobile Number",
+        	password : {
+        		pwcheck: "Password is not strong enough",
+        	      checklower: "Need atleast 1 lowercase alphabet",
+        	      checkupper: "Need atleast 1 uppercase alphabet",
+        	      checkdigit: "Need atleast 1 digit"
+        	},
+        	confirmPassword: " Enter Confirm Password Same as Password"
+        }
+    });
 }

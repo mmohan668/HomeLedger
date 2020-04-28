@@ -10,6 +10,22 @@
 <script type="text/javascript" src='<c:url value="/js/jquery.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery.min.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/bootstrap.min.js"/>'></script>
+
+<script>
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+history.pushState(null, document.title, location.href);
+window.addEventListener('popstate', function (event)
+{
+  history.pushState(null, document.title, location.href);
+});
+$(function () {  
+    $(document).keydown(function (e) {  
+        return (e.which || e.keyCode) != 116;  
+    });  
+}); 
+</script>
 </head>
 <body>
 	<div class="container">
