@@ -66,6 +66,8 @@ public class ReportService {
 		User user = (User) httpSession.getAttribute("user");
 		user.setPassword("");
 		notificationService.sendReport(user, period, totalAmount+"", path);
+		File fileToDelete = new File(path);
+		fileToDelete.delete();
 		return true;
 	}
 	public boolean exportReportByPeriod(Date from, Date thru) throws FileNotFoundException, JRException, MessagingException {
@@ -95,6 +97,8 @@ public class ReportService {
 		User user = (User) httpSession.getAttribute("user");
 		user.setPassword("");
 		notificationService.sendReport(user, period, totalAmount+"", path);
+		File fileToDelete = new File(path);
+		fileToDelete.delete();
 		return true;
 	}
 }
