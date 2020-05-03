@@ -2,13 +2,18 @@ package org.home.ledger.service;
 
 import java.util.Random;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import org.home.ledger.model.OTPNumber;
 import org.home.ledger.model.User;
 import org.home.ledger.repository.OTPRepository;
 import org.home.ledger.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,6 +42,22 @@ public class NotificationService {
 		mail.setText(message);
 		
 		javaMailSender.send(mail);
+		
+	}
+	
+	public void sendReport(User user, String period, String totalAmount,String fileName) throws MessagingException {
+		
+		MimeMessage msg = javaMailSender.createMimeMessage();
+		MimeMessageHelper mail = new MimeMessageHelper(msg,true);
+		mail.setTo(user.getEmailId());
+		mail.setSubject("Home Ledger Report");
+		String message = "Dear "+ user.getFirstName()+" "+user.getLastName()+" !"+"\n\n"+"Please find enclosed your home ledger statement for the period "+period;
+		message +="\n\n Total Particulars Amount :: "+totalAmount;
+		message +="\n\n Thanks & Regards, \n Home Ledger Team.";
+		mail.setText(message);
+		FileSystemResource file = new FileSystemResource(fileName);
+		mail.addAttachment(file.getFilename(), file);
+		javaMailSender.send(msg);
 		
 	}
 	

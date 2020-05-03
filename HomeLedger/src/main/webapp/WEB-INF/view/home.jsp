@@ -73,8 +73,8 @@ $(function () {
 						data-toggle="dropdown" href="#">VIEW Spends<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="/viewAllSpends"/>'>VIEW ALL SPENDS</a></li>
-							<li><a href="#">VIEW SPENDS BY TIME</a></li>
-							<li><a href="#">VIEW SPENDS BY CATEGORY</a></li>
+							<li><a href='<c:url value="/viewSpendsByPeriod"/>'>VIEW SPENDS BY PERIOD</a></li>
+							<li><a href='<c:url value="/viewSpendsByMonth"/>'>VIEW SPENDS BY MONTH</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -1543,7 +1543,176 @@ $(function () {
 			<!-- <h3>
 				<span>All Spends</span>
 			</h3> -->
+			<c:if test="${status=='success'}">
+					<script type="text/javascript">
+						$(function() {
+							$('.alert-success').show("slow")
+						})
+					</script>
+					<c:remove var="status" scope="session"/>
+				</c:if>
+				<c:if test="${status=='failed'}">
+					<script type="text/javascript">
+						$(function() {
+							$('.alert-danger').show("slow")
+						})
+					</script>
+					<c:remove var="status" scope="session"/>
+				</c:if>
+				<div class="alert alert-success">
+					<strong>Success!</strong> Report Generated and mailed to your email id
+				</div>
+				<div class="alert alert-danger">
+					<strong>OOPS!</strong> Some thing is wrong while generating the report
+				</div>
 			<h6><span>Total Amount Spend :</span>&emsp;<span style="color: navy;">${totalAmount}</span></h6>
+			<br>
+			<h6><a href='<c:url value="/generateReport"/>'>Send the report to email id as pdf</a></h6>
+			<table class="container table table-striped table-sm" id="dtBasicExample">
+				<thead>
+					<tr>
+						<th><h1>Particular Date</h1></th>
+						<th><h1>Particular Category</h1></th>
+						<th><h1>Particular Type</h1></th>
+						<th><h1>Particular Description</h1></th>
+						<th><h1>Particular Amount</h1></th>
+						<th><h1>Particular Remarks</h1></th>
+						<th><h1>Delete</h1></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="particular" items="${particulars}">
+						<tr>
+							<td>${particular.particularDate}</td>
+							<td>${particular.particularCategory}</td>
+							<td>${particular.particularType}</td>
+							<td>${particular.particularDescription}</td>
+							<td>${particular.particularAmount}</td>
+							<td>${particular.particularRemarks}</td>
+							<td><a href='<c:url value="/deleteParticular?particularId=${particular.particularId}"/>'><span><img
+													alt="Edit" src='<c:url value="/image/delete.png"/>' width="15px" height="15px"></span></a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:when>
+		<c:when test="${MODE=='VIEW_SPENDS_BY_PERIOD'}">
+			<!-- <h3>
+				<span>All Spends</span>
+			</h3> -->
+			<c:if test="${status=='success'}">
+					<script type="text/javascript">
+						$(function() {
+							$('.alert-success').show("slow")
+						})
+					</script>
+					<c:remove var="status" scope="session"/>
+				</c:if>
+				<c:if test="${status=='failed'}">
+					<script type="text/javascript">
+						$(function() {
+							$('.alert-danger').show("slow")
+						})
+					</script>
+					<c:remove var="status" scope="session"/>
+				</c:if>
+				<div class="alert alert-success">
+					<strong>Success!</strong> Report Generated and mailed to your email id
+				</div>
+				<div class="alert alert-danger">
+					<strong>OOPS!</strong> Some thing is wrong while generating the report
+				</div>
+				<form action='<c:url value="/viewSpendsByPeriod"/>' method="post" >
+					<div class="form-group">
+						<label for="periodFrom">From:</label> <input
+							type="date" class="form-control" id="periodFrom"
+							name="periodFrom" required="required">
+					</div>
+					<div class="form-group">
+						<label for="periodThru">From:</label> <input
+							type="date" class="form-control" id="periodThru"
+							name="periodThru" required="required">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+			
+			<c:if test="${not empty totalAmount}">
+				<h6><span>Total Amount Spend :</span>&emsp;<span style="color: navy;">${totalAmount}</span></h6>
+				<br>
+				<h6><a href='<c:url value="/generateReportByPeriod?periodFrom=${periodFrom}&periodThru=${periodThru}"/>'>Send the report to email id as pdf</a></h6>
+			</c:if>
+			<table class="container table table-striped table-sm" id="dtBasicExample">
+				<thead>
+					<tr>
+						<th><h1>Particular Date</h1></th>
+						<th><h1>Particular Category</h1></th>
+						<th><h1>Particular Type</h1></th>
+						<th><h1>Particular Description</h1></th>
+						<th><h1>Particular Amount</h1></th>
+						<th><h1>Particular Remarks</h1></th>
+						<th><h1>Delete</h1></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="particular" items="${particulars}">
+						<tr>
+							<td>${particular.particularDate}</td>
+							<td>${particular.particularCategory}</td>
+							<td>${particular.particularType}</td>
+							<td>${particular.particularDescription}</td>
+							<td>${particular.particularAmount}</td>
+							<td>${particular.particularRemarks}</td>
+							<td><a href='<c:url value="/deleteParticular?particularId=${particular.particularId}"/>'><span><img
+													alt="Edit" src='<c:url value="/image/delete.png"/>' width="15px" height="15px"></span></a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:when>
+		<c:when test="${MODE=='VIEW_SPENDS_BY_MONTH'}">
+			<!-- <h3>
+				<span>All Spends</span>
+			</h3> -->
+			<c:if test="${status=='success'}">
+					<script type="text/javascript">
+						$(function() {
+							$('.alert-success').show("slow")
+						})
+					</script>
+					<c:remove var="status" scope="session"/>
+				</c:if>
+				<c:if test="${status=='failed'}">
+					<script type="text/javascript">
+						$(function() {
+							$('.alert-danger').show("slow")
+						})
+					</script>
+					<c:remove var="status" scope="session"/>
+				</c:if>
+				<div class="alert alert-success">
+					<strong>Success!</strong> Report Generated and mailed to your email id
+				</div>
+				<div class="alert alert-danger">
+					<strong>OOPS!</strong> Some thing is wrong while generating the report
+				</div>
+				<form action='<c:url value="/viewSpendsByMonth"/>' method="post" >
+					<div class="form-group">
+						<label for="periodMonth">Select Month:</label> 
+						<select name="periodMonth" class="form-control" required="required">
+							<option value="">--Select--</option>
+							<c:forEach var="month" items="${months}">
+								<option value="${month}">${month}</option>
+							</c:forEach>
+						</select> 
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+			
+			<c:if test="${not empty totalAmount}">
+				<h6><span>Total Amount Spend :</span>&emsp;<span style="color: navy;">${totalAmount}</span></h6>
+				<br>
+				<h6><a href='<c:url value="/generateReportByMonth?periodMonth=${periodMonth}"/>'>Send the report to email id as pdf</a></h6>
+			</c:if>
 			<table class="container table table-striped table-sm" id="dtBasicExample">
 				<thead>
 					<tr>

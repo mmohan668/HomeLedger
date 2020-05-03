@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpSession;
+
 import org.home.ledger.model.User;
 import org.home.ledger.principals.UserPrincipal;
 import org.home.ledger.repository.UserRepository;
@@ -18,6 +20,8 @@ import org.springframework.stereotype.Service;
 public class UserService implements UserDetailsService{
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private HttpSession httpSession;
 
 	public void registerUser(User user) {
 		userRepository.save(user);
@@ -44,6 +48,7 @@ public class UserService implements UserDetailsService{
 				throw new UsernameNotFoundException("User not found");
 			}
 		}
+		httpSession.setAttribute("user", user);
 		return new UserPrincipal(user);
 	}
 }

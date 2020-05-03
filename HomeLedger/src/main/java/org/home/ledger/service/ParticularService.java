@@ -2,6 +2,7 @@ package org.home.ledger.service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.home.ledger.model.Particulars;
@@ -23,7 +24,11 @@ public class ParticularService {
 		particularRepository.findAll().forEach(p -> particulars.add(p));
 		return particulars;
 	}
-
+	public List<Particulars> getSpendsByPeriod(Date from, Date thru) {
+		List<Particulars> particulars = new ArrayList<Particulars>();
+		particularRepository.findByParticularDateBetween(from, thru).forEach(p -> particulars.add(p));
+		return particulars;
+	}
 	public BigDecimal getTotalAmount() {
 		return particularRepository.totalAmount();
 	}
@@ -34,5 +39,13 @@ public class ParticularService {
 
 	public void deleteParticular(int particularId) {
 		particularRepository.deleteById(particularId);		
+	}
+
+	public BigDecimal getTotalAmountByPeriod(Date from, Date thru) {
+		return particularRepository.totalAmountbyPeriod(from, thru);
+	}
+
+	public List<Date> getDates() {
+		return particularRepository.findDates();
 	}
 }

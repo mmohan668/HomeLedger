@@ -1,6 +1,7 @@
 package org.home.ledger.model;
 
 import java.util.Comparator;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ public class Particulars {
 	@Temporal(TemporalType.DATE)
 	private Date particularDate;
 	@Column(name = "particular_category")
-	private String ParticularCategory;
+	private String particularCategory;
 	@Column(name = "particular_type")
 	private String particularType;
 	@Column(name = "particular_description")
@@ -45,7 +46,7 @@ public class Particulars {
 			String particularDescription, double particularAmount, String particularRemarks) {
 		
 		this.particularDate = particularDate;
-		ParticularCategory = particularCategory;
+		this.particularCategory = particularCategory;
 		this.particularType = particularType;
 		this.particularDescription = particularDescription;
 		this.particularAmount = particularAmount;
@@ -68,11 +69,11 @@ public class Particulars {
 	}
 
 	public String getParticularCategory() {
-		return ParticularCategory;
+		return particularCategory;
 	}
 
 	public void setParticularCategory(String particularCategory) {
-		ParticularCategory = particularCategory;
+		this.particularCategory = particularCategory;
 	}
 
 	public String getParticularType() {
@@ -110,7 +111,7 @@ public class Particulars {
 	@Override
 	public String toString() {
 		return "Particulars [particularId=" + particularId + ", particularDate=" + particularDate
-				+ ", ParticularCategory=" + ParticularCategory + ", particularType=" + particularType
+				+ ", particularCategory=" + particularCategory + ", particularType=" + particularType
 				+ ", particularDescription=" + particularDescription + ", particularAmount=" + particularAmount
 				+ ", particularRemarks=" + particularRemarks + "]";
 	}
